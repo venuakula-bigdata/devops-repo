@@ -9,7 +9,7 @@ on:
 
 jobs:
   create-images:
-    runs-on: EC2-Runner
+    runs-on: ubuntu-latest
 
     steps:
     - name: checkout repo
