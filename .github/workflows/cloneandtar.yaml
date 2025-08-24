@@ -24,6 +24,6 @@ jobs:
       run: tar -czvf my-artifact.tar.gz developtar/
       working-directory: ${{ github.workspace }}
     - name: List contents of GITHUB_WORKSPACE
-        run: |
-          echo "Listing contents of $GITHUB_WORKSPACE:"
-          ls -la $GITHUB_WORKSPACE
+      run: |
+       echo "Listing contents of $GITHUB_WORKSPACE:"
+       ls -la $GITHUB_WORKSPACE
