@@ -34,4 +34,4 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
     - name: Upload tar file to S3
-      run: aws s3 cp ${{ github.workspace }}/developtar/my-artifact.tar.gz s3://${{ secrets.S3_BUCKET_NAME }}/
+      run: aws s3 cp ${{ github.workspace }}/my-artifact.tar.gz s3://${{ secrets.S3_BUCKET_NAME }}/
