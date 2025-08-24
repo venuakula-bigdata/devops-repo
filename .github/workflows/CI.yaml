@@ -1,0 +1,21 @@
+name: CI workflow
+on:
+ workflow_dispatch:
+  inputs:
+    ENVIRONMENT:
+      type: choice
+      description: select target environment
+      options: [DEV, ST, SIT, UAT, PROD, DR]
+
+jobs:
+  create-images:
+    runs-on: EC2-Runner
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+    - name: check into runner
+      run: |
+       pwd
+       mkdir demo_cicd
+       ls -lrt
