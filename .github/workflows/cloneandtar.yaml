@@ -26,6 +26,8 @@ jobs:
     - name: Untar the archive
       run: |
        tar -xzf ${{ github.workspace }}/my-artifact.tar.gz
+       pwd
+       ls -lrt
     - name: List contents of GITHUB_WORKSPACE
       run: |
        echo "Listing contents of $GITHUB_WORKSPACE:"
