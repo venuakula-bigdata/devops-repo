@@ -18,6 +18,8 @@ jobs:
         repository: venuakula-bigdata/develop
         path: developtar
         token: ${{ secrets.ACTIONS_PAT }}
+    - name: check into runner
+      run: rm -rf developtar/.git
     - name: Create tar archive
       run: tar -czvf my-artifact.tar.gz developtar/
       working-directory: ${{ github.workspace }}
