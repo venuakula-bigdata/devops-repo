@@ -26,7 +26,7 @@ jobs:
     - name: Untar the archive
       run: |
        mkdir untarfold
-       tar -xzf ${{ github.workspace }}/my-artifact.tar.gz untarfold/
+       tar -xzf ${{ github.workspace }}/my-artifact.tar.gz -C untarfold/
        pwd
        ls -lrt untarfold/
     - name: List contents of GITHUB_WORKSPACE
