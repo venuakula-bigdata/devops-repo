@@ -25,9 +25,10 @@ jobs:
       working-directory: ${{ github.workspace }}
     - name: Untar the archive
       run: |
-       tar -xzf ${{ github.workspace }}/my-artifact.tar.gz developtar/
+       mkdir untarfold
+       tar -xzf ${{ github.workspace }}/my-artifact.tar.gz untarfold/
        pwd
-       ls -lrt ${{ github.workspace }}/developtar/
+       ls -lrt untarfold/
     - name: List contents of GITHUB_WORKSPACE
       run: |
        echo "Listing contents of $GITHUB_WORKSPACE:"
