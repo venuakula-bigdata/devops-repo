@@ -28,7 +28,7 @@ jobs:
        mkdir untarfold
        tar -xzf ${{ github.workspace }}/my-artifact.tar.gz -C untarfold/
        pwd
-       ls -lrt untarfold/
+       ls -lrt untarfold/developtar/
     - name: List contents of GITHUB_WORKSPACE
       run: |
        echo "Listing contents of $GITHUB_WORKSPACE:"
