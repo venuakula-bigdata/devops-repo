@@ -14,6 +14,7 @@ jobs:
     steps:
     - name: Clone private repository
       run: |
+       cd ..
        git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
        
     - name: List contents of GITHUB_WORKSPACE
