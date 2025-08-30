@@ -19,4 +19,4 @@ jobs:
     - name: List contents of GITHUB_WORKSPACE
       run: |
        echo "Listing contents of $GITHUB_WORKSPACE:"
-       ls -la $GITHUB_WORKSPACE
+       ls -la $GITHUB_WORKSPACE/develop
