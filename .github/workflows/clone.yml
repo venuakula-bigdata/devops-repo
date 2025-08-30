@@ -1,0 +1,35 @@
+name: Clone and Upload workflow
+on:
+ workflow_dispatch:
+  inputs:
+    ENVIRONMENT:
+      type: choice
+      description: select target environment
+      options: [DEV, ST, SIT, UAT, PROD, DR]
+
+jobs:
+  create-tar:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v4
+      with:
+        repository: venuakula-bigdata/develop
+        path: developtar
+        token: ${{ secrets.ACTIONS_PAT }}
+    - name: remove .git folder
+      run: rm -rf developtar/.git
+    - name: Create tar archive
+      run: tar -czvf my-artifact.tar.gz developtar/
+      working-directory: ${{ github.workspace }}
+    - name: Untar the archive
+      run: |
+       mkdir untarfold
+       tar -xzf ${{ github.workspace }}/my-artifact.tar.gz -C untarfold/
+       pwd
+       ls -lrt untarfold/developtar/
+    - name: List contents of GITHUB_WORKSPACE
+      run: |
+       echo "Listing contents of $GITHUB_WORKSPACE:"
+       ls -la $GITHUB_WORKSPACE
