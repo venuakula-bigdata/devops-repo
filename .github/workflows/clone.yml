@@ -14,7 +14,7 @@ jobs:
     steps:
     - name: Clone private repository
       run: |
-       git clone https://github.com/OWNER/REPO.git
+       git clone https://github.com/venuakula-bigdata/develop.git
        env:
         GIT_ASKPASS: /bin/echo
         GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}    
