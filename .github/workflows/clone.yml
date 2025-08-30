@@ -8,17 +8,14 @@ on:
       options: [DEV, ST, SIT, UAT, PROD, DR]
 
 jobs:
-  create-tar:
+  cloning:
     runs-on: ubuntu-latest
 
     steps:
     - name: Clone private repository
       run: |
-       git clone https://github.com/venuakula-bigdata/develop.git
-       env:
-        GIT_ASKPASS: /bin/echo
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}    
-    
+       git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
+       
     - name: List contents of GITHUB_WORKSPACE
       run: |
        echo "Listing contents of $GITHUB_WORKSPACE:"
