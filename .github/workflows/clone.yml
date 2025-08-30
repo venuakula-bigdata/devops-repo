@@ -1,4 +1,4 @@
-name: Clone and Upload workflow
+name: Clone workflow
 on:
  workflow_dispatch:
   inputs:
