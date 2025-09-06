@@ -29,7 +29,8 @@ jobs:
          ls -la $GITHUB_WORKSPACE
          ls -la /home/runner/work/devops-repo
          ls -la /home/runner/work/devops-repo/develop
-         cp  /home/runner/work/devops-repo/develop/deployment.yml /home/runner/work/devops-repo/devops-repo/
+         cd devops-repo/develop
+         cp deployment.yml /home/runner/work/devops-repo/devops-repo/
 
       - name: Deploy Manifest
         uses: actions-hub/kubectl@master
