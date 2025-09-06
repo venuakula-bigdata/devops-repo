@@ -27,6 +27,7 @@ jobs:
       - name: Set up kubeconfig
         run: |
           echo "${{secrets.KUBE_CONFIG6}}" > ${{ github.workspace }}/kubeconfig.yaml
+          echo "${{secrets.KUBE_CONFIG6}}" > $HOME/.kube/config
           # mkdir -p $HOME/.kube
           # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
           # sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -35,5 +36,4 @@ jobs:
       - name: Deploy manifests
         run: |
           kubectl apply -f deployment1.yaml -n dev1 --validate=false --insecure-skip-tls-verify=true
-        env:
-          KUBE_CONFIG: ${{ github.workspace }}/kubeconfig.yaml
+        
