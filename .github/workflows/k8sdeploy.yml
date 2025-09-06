@@ -23,6 +23,6 @@ jobs:
           version: 'latest'
     - name: deploying to k8s
       run: |
-       kubectl apply -f deployment.yaml
+       kubectl apply -f deployment.yaml -n dev1
        env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
