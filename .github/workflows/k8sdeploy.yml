@@ -23,6 +23,9 @@ jobs:
           version: 'latest'
     - name: deploying to k8s
       run: |
+       ls -la $GITHUB_WORKSPACE
+       ls -la /home/runner/work/devops-repo
+       ls -la /home/runner/work/devops-repo/develop
        kubectl apply -f deployment.yaml -n dev1
        env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
