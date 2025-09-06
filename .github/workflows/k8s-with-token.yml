@@ -21,18 +21,17 @@ jobs:
       uses: azure/setup-kubectl@v3
       with:
           version: 'latest'
-    - name: Set up Kubernetes
+    - name: Setup kubeconfig
       run: |
-        echo "${{ secrets.KUBECONFIG_DATA }}" | base64 --decode > kubeconfig.yaml
-        export KUBECONFIG=$(pwd)/kubeconfig.yaml
-        cat $(pwd)/kubeconfig.yaml
+       echo "${{ secrets.KUBECONFIG_DATA }}" | base64 --decode > kubeconfig.yaml
+      env:
+        KUBECONFIG: ${{ github.workspace }}/kubeconfig.yaml
     - name: Test Kubeconfig
-      run: kubectl get nodes
+      run: kubectl --kubeconfig=kubeconfig.yaml get nodes
     - name: deploying to k8s
       run: |
        ls -la $GITHUB_WORKSPACE
        ls -la /home/runner/work/devops-repo
        ls -la /home/runner/work/devops-repo/develop
-       kubectl apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
-       env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG_DATA }}
+       kubectl --kubeconfig=kubeconfig.yaml -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
+       
