@@ -24,6 +24,7 @@ jobs:
     - name: Setup kubeconfig
       run: |
        echo "${{ secrets.KUBECONFIG_DATA }}" | base64 --decode > kubeconfig.yaml
+       pwd
       env:
         KUBECONFIG: ${{ github.workspace }}/kubeconfig.yaml
     - name: Test Kubeconfig
@@ -34,4 +35,7 @@ jobs:
        ls -la /home/runner/work/devops-repo
        ls -la /home/runner/work/devops-repo/develop
        kubectl --kubeconfig=kubeconfig.yaml -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
-       
+    - name: Cleanup
+      if: always()
+      run: |
+        rm -rf $GITHUB_WORKSPACE/*
