@@ -32,6 +32,6 @@ jobs:
        ls -la $GITHUB_WORKSPACE
        ls -la /home/runner/work/devops-repo
        ls -la /home/runner/work/devops-repo/develop
-       kubectl apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
+       kubectl apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1 --validate=false
        env:
         KUBECONFIG: ${{ secrets.KUBECONFIG }}
