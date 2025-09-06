@@ -36,4 +36,4 @@ jobs:
         run: |
           kubectl apply -f deployment1.yaml -n dev1 --validate=false --insecure-skip-tls-verify=true
         env:
-          KUBECONFIG: ${{ github.workspace }}/kubeconfig.yaml
+          KUBE_CONFIG: ${{ github.workspace }}/kubeconfig.yaml
