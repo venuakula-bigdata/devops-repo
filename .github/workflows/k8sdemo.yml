@@ -35,4 +35,4 @@ jobs:
       - name: Deploy Manifest
         uses: actions-hub/kubectl@master
         with:
-          args: apply -f deployment1.yaml -n dev1
+          args: apply -f deployment1.yaml -n dev1 --validate=false
