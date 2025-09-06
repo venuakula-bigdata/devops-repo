@@ -26,7 +26,8 @@ jobs:
         echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig.yaml
         export KUBECONFIG=$(pwd)/kubeconfig.yaml
         cat $(pwd)/kubeconfig.yaml
-    
+    - name: Test Kubeconfig
+      run: kubectl get nodes
     - name: deploying to k8s
       run: |
        ls -la $GITHUB_WORKSPACE
