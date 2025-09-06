@@ -30,4 +30,4 @@ jobs:
       - name: Deploy Manifest
         uses: actions-hub/kubectl@master
         with:
-          args: apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
+          args: apply -f deployment.yaml -n dev1
