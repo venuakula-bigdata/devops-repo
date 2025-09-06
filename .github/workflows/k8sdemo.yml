@@ -21,18 +21,18 @@ jobs:
         run: |
          pwd
 
-      - name: Clone private repository
-        run: |
-         cd ..
-         git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
-         pwd
-         ls -la $GITHUB_WORKSPACE
-         ls -la /home/runner/work/devops-repo
-         ls -la /home/runner/work/devops-repo/develop
-         cd devops-repo/develop
-         cp deployment.yml /home/runner/work/devops-repo/devops-repo/
+      # - name: Clone private repository
+      #   run: |
+      #    cd ..
+      #    git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
+      #    pwd
+      #    ls -la $GITHUB_WORKSPACE
+      #    ls -la /home/runner/work/devops-repo
+      #    ls -la /home/runner/work/devops-repo/develop
+      #    cd devops-repo/develop
+      #    cp deployment.yml /home/runner/work/devops-repo/devops-repo/
 
       - name: Deploy Manifest
         uses: actions-hub/kubectl@master
         with:
-          args: apply -f deployment.yaml -n dev1
+          args: apply -f deployment1.yaml -n dev1
