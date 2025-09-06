@@ -1,0 +1,30 @@
+name: k8s workflow with token
+on:
+ workflow_dispatch:
+  inputs:
+    ENVIRONMENT:
+      type: choice
+      description: select target environment
+      options: [DEV, ST, SIT, UAT, PROD, DR]
+
+env:
+  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Clone private repository
+        run: |
+         cd ..
+         git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
+         pwd
+
+      - name: Deploy Manifest
+        uses: actions-hub/kubectl@master
+        with:
+          args: apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
