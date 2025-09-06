@@ -8,7 +8,7 @@ on:
       options: [DEV, ST, SIT, UAT, PROD, DR]
 
 env:
-  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG1 }}
+  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG2 }}
 
 jobs:
   deploy:
