@@ -1,4 +1,4 @@
-name: k8s workflow with token
+name: k8s workflow demo
 on:
  workflow_dispatch:
   inputs:
