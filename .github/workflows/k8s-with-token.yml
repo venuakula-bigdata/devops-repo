@@ -9,7 +9,7 @@ on:
 
 jobs:
   deploying-to-k8s:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Clone private repository
