@@ -28,7 +28,8 @@ jobs:
       env:
         KUBECONFIG: ${{ github.workspace }}/kubeconfig.yaml
     - name: Test Kubeconfig
-      run: kubectl --kubeconfig=/home/ubuntu/actions-runner/_work/devops-repo/devops-repo/kubeconfig.yaml get nodes
+      run: kubectl get nodes
+      # run: kubectl --kubeconfig=/home/ubuntu/actions-runner/_work/devops-repo/devops-repo/kubeconfig.yaml get nodes
     - name: deploying to k8s
       run: |
        ls -la $GITHUB_WORKSPACE
