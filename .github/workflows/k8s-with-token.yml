@@ -33,4 +33,5 @@ jobs:
        ls -la /home/runner/work/devops-repo
        ls -la /home/runner/work/devops-repo/develop
        kubectl apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
-       
+       env:
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}
