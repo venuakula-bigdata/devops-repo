@@ -38,4 +38,4 @@ jobs:
     - name: Cleanup
       if: always()
       run: |
-        rm -rf $GITHUB_WORKSPACE/*
+        rm -rf /home/ubuntu/actions-runner/_work/*
