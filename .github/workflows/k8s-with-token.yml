@@ -35,7 +35,7 @@ jobs:
        ls -la /home/runner/work/devops-repo
        ls -la /home/runner/work/devops-repo/develop
        kubectl --kubeconfig=kubeconfig.yaml -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
-    - name: Cleanup
-      if: always()
-      run: |
-        rm -rf /home/ubuntu/actions-runner/_work/*
+    # - name: Cleanup
+    #   if: always()
+    #   run: |
+    #     rm -rf /home/ubuntu/actions-runner/_work/*
