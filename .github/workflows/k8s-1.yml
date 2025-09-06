@@ -1,0 +1,36 @@
+name: Deploy to Kubernetes
+
+on:
+ workflow_dispatch:
+  inputs:
+    ENVIRONMENT:
+      type: choice
+      description: select target environment
+      options: [DEV, ST, SIT, UAT, PROD, DR]
+env:
+  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG6 }}
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Install kubectl (latest stable release)
+      - name: Install kubectl
+        run: |
+          curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x kubectl
+          sudo mv kubectl /usr/local/bin/
+
+      # Write kubeconfig from secret into a file
+      - name: Set up kubeconfig
+        run: |
+          echo "${KUBE_CONFIG}" > ${{ github.workspace }}/kubeconfig.yaml
+
+      # Apply manifests
+      - name: Deploy manifests
+        run: |
+          kubectl apply -f deployment1.yaml -n dev1 --validate=false --insecure-skip-tls-verify=true
+        env:
+          KUBECONFIG: ${{ github.workspace }}/kubeconfig.yaml
