@@ -16,7 +16,7 @@ jobs:
       run: |
        cd ..
        git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
-       
+       pwd
     - name: Set up kubectl
       uses: azure/setup-kubectl@v3
       with:
