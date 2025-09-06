@@ -1,0 +1,28 @@
+name: k8s workflow
+on:
+ workflow_dispatch:
+  inputs:
+    ENVIRONMENT:
+      type: choice
+      description: select target environment
+      options: [DEV, ST, SIT, UAT, PROD, DR]
+
+jobs:
+  deploying-to-k8s:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Clone private repository
+      run: |
+       cd ..
+       git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
+       
+    - name: Set up kubectl
+      uses: azure/setup-kubectl@v3
+      with:
+          version: 'latest'
+    - name: deploying to k8s
+      run: |
+       kubectl apply -f deployment.yaml
+       env:
+        KUBECONFIG: ${{ secrets.KUBECONFIG }}
