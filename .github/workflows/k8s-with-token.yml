@@ -23,7 +23,7 @@ jobs:
           version: 'latest'
     - name: Set up Kubernetes
       run: |
-        echo "${{ secrets.KUBECONFIG }}" | base64 --decode > kubeconfig.yaml
+        echo "${{ secrets.KUBECONFIG_DATA }}" | base64 --decode > kubeconfig.yaml
         export KUBECONFIG=$(pwd)/kubeconfig.yaml
         cat $(pwd)/kubeconfig.yaml
     - name: Test Kubeconfig
@@ -35,4 +35,4 @@ jobs:
        ls -la /home/runner/work/devops-repo/develop
        kubectl apply -f /home/runner/work/devops-repo/develop/deployment.yaml -n dev1
        env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+        KUBECONFIG: ${{ secrets.KUBECONFIG_DATA }}
