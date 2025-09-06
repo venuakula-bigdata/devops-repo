@@ -23,6 +23,9 @@ jobs:
          cd ..
          git clone https://x-access-token:${{ secrets.ACTIONS_PAT }}@github.com/venuakula-bigdata/develop.git
          pwd
+         ls -la $GITHUB_WORKSPACE
+         ls -la /home/runner/work/devops-repo
+         ls -la /home/runner/work/devops-repo/develop
 
       - name: Deploy Manifest
         uses: actions-hub/kubectl@master
