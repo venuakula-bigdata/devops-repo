@@ -26,7 +26,10 @@ jobs:
       # Write kubeconfig from secret into a file
       - name: Set up kubeconfig
         run: |
-          echo "${KUBE_CONFIG}" > ${{ github.workspace }}/kubeconfig.yaml
+          echo "${{secrets.KUBE_CONFIG6}}" > ${{ github.workspace }}/kubeconfig.yaml
+          # mkdir -p $HOME/.kube
+          # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+          # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
       # Apply manifests
       - name: Deploy manifests
