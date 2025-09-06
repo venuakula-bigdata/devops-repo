@@ -25,8 +25,8 @@ jobs:
       run: |
        mkdir -p $HOME/.kube
        echo "${KUBECONFIG}" > $HOME/.kube/config
-      env:
-        KUBECONFIG: ${{ secrets.KUBECONFIG }}
+       cat $HOME/.kube/config
+      
     - name: deploying to k8s
       run: |
        ls -la $GITHUB_WORKSPACE
