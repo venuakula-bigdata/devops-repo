@@ -8,11 +8,11 @@ on:
       options: [DEV, ST, SIT, UAT, PROD, DR]
 
 env:
-  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG5 }}
+  KUBE_CONFIG: ${{ secrets.KUBE_CONFIG6 }}
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: Checkout
