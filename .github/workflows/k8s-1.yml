@@ -25,6 +25,8 @@ jobs:
       - name: Download Artifacts into Dev 
         run: |
          ssh ${{ secrets.REMOTE_HOST }} 'pwd'
+         cd "$(pwd)"
+         ls -la 
          scp -o StrictHostKeyChecking=no ./deployment1.yaml ${{ secrets.REMOTE_HOST }}:~/
          ls -la ~/
          
