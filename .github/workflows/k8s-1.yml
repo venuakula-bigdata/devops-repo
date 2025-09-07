@@ -16,24 +16,40 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Install kubectl (latest stable release)
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v4
+      - name: check the content
+        run: |
+           ls -la $GITHUB_WORKSPACE
+           ls -la /home/runner/work/devops-repo
+           ls -la /home/runner/work/devops-repo/devops-repo
+
+      - name: Copy manifests to server
+        uses: appleboy/scp-action@v0.1.7
         with:
-           version: 'v1.31.0' # or 'latest'
+            host: ${{ secrets.REMOTE_HOST }}
+            username: ${{ secrets.REMOTE_USERNAME }}
+            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            port: 22
+            source: "./k8s/*"         # local path in repo
+            target: "/home/${{ secrets.REMOTE_USERNAME }}/k8s"   # remote path
+
+      # Install kubectl (latest stable release)
+      # - name: Install kubectl
+      #   uses: azure/setup-kubectl@v4
+      #   with:
+      #      version: 'v1.31.0' # or 'latest'
 
 
       # Write kubeconfig from secret into a file
-      - name: Set up kubeconfig
-        run: |
-          echo "${{secrets.KUBE_CONFIG6}}" > ${{ github.workspace }}/kubeconfig.yaml
-          echo "${{secrets.KUBE_CONFIG6}}" > $HOME/.kube/config
+      # - name: Set up kubeconfig
+      #   run: |
+      #     echo "${{secrets.KUBE_CONFIG6}}" > ${{ github.workspace }}/kubeconfig.yaml
+      #     echo "${{secrets.KUBE_CONFIG6}}" > $HOME/.kube/config
           # mkdir -p $HOME/.kube
           # sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
           # sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
       # Apply manifests
-      - name: Deploy manifests
-        run: |
-          kubectl apply -f deployment1.yaml -n dev1 --validate=false --insecure-skip-tls-verify=true
+      # - name: Deploy manifests
+      #   run: |
+      #     kubectl apply -f deployment1.yaml -n dev1 --validate=false --insecure-skip-tls-verify=true
         
