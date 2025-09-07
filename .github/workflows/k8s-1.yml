@@ -27,9 +27,10 @@ jobs:
         with:
             host: ${{ secrets.REMOTE_HOST }}
             username: ${{ secrets.REMOTE_USERNAME }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
+            #key: ${{ secrets.SSH_PRIVATE_KEY }}
             port: 22
-            source: "./k8s/*"         # local path in repo
+            source: "${GITHUB_WORKSPACE}"         # local path in repo
+            #source: "./k8s/*"         # local path in repo
             target: "/home/${{ secrets.REMOTE_USERNAME }}/k8s"   # remote path
 
       # Install kubectl (latest stable release)
