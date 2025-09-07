@@ -22,7 +22,7 @@ jobs:
            #ls -la /home/runner/work/devops-repo
            #ls -la /home/runner/work/devops-repo/devops-repo
 
-      - name: Download Artifacts into Dev 
+      - name: Download Artifacts and deploy
         run: |
          #ssh ${{ secrets.REMOTE_HOST }} 'pwd'
          cd "$(pwd)"
@@ -38,6 +38,15 @@ jobs:
          ls -la ~/
          sudo kubectl apply -f ~/deployment1.yaml
          EOF
+
+
+
+
+
+
+
+
+         
          
       # - name: Copy manifests to server
       #   uses: appleboy/scp-action@v0.1.7
