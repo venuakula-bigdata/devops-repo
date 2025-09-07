@@ -36,7 +36,7 @@ jobs:
          echo "Inside remote host:"
          pwd
          ls -la ~/
-         kubectl apply -f ~/deployment1.yaml
+         sudo kubectl apply -f ~/deployment1.yaml
          EOF
          
       # - name: Copy manifests to server
