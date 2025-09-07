@@ -24,10 +24,12 @@ jobs:
 
       - name: Download Artifacts into Dev 
         run: |
-         ssh ${{ secrets.REMOTE_HOST }} 'pwd'
+         #ssh ${{ secrets.REMOTE_HOST }} 'pwd'
          cd "$(pwd)"
-         ls -la 
-         scp -o StrictHostKeyChecking=no "$(pwd)"/deployment1.yaml ${{ secrets.REMOTE_HOST }}:~/
+         ls -la
+         scp -o StrictHostKeyChecking=no "$(pwd)"/deployment1.yaml ${{ secrets.REMOTE_HOST }}:~/deployment1.yaml
+         #scp -o StrictHostKeyChecking=no "$(pwd)"/deployment1.yaml ${{ secrets.REMOTE_HOST }}:~/
+         ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_HOST }}
          ls -la ~/
          kubectl apply -f deployment1.yaml
          
