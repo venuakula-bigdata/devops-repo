@@ -22,6 +22,10 @@ jobs:
            #ls -la /home/runner/work/devops-repo
            #ls -la /home/runner/work/devops-repo/devops-repo
 
+      - name: Download Artifacts into Dev 
+        run: |
+         ssh ${{ secrets.REMOTE_HOST }} 'pwd'
+         
       - name: Copy manifests to server
         uses: appleboy/scp-action@v0.1.7
         with:
