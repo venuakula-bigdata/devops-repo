@@ -27,19 +27,20 @@ jobs:
          ssh ${{ secrets.REMOTE_HOST }} 'pwd'
          cd "$(pwd)"
          ls -la 
-         scp -o StrictHostKeyChecking=no ./deployment1.yaml ${{ secrets.REMOTE_HOST }}:~/
+         scp -o StrictHostKeyChecking=no "$(pwd)"/deployment1.yaml ${{ secrets.REMOTE_HOST }}:~/
          ls -la ~/
+         kubectl apply -f deployment1.yaml
          
-      - name: Copy manifests to server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-            host: ${{ secrets.REMOTE_HOST }}
-            username: ${{ secrets.REMOTE_USERNAME }}
-            #key: ${{ secrets.SSH_PRIVATE_KEY }}
-            port: 22
-            source: "${GITHUB_WORKSPACE}"         # local path in repo
-            #source: "./k8s/*"         # local path in repo
-            target: "/home/${{ secrets.REMOTE_USERNAME }}/k8s"   # remote path
+      # - name: Copy manifests to server
+      #   uses: appleboy/scp-action@v0.1.7
+      #   with:
+      #       host: ${{ secrets.REMOTE_HOST }}
+      #       username: ${{ secrets.REMOTE_USERNAME }}
+      #       #key: ${{ secrets.SSH_PRIVATE_KEY }}
+      #       port: 22
+      #       source: "${GITHUB_WORKSPACE}"         # local path in repo
+      #       #source: "./k8s/*"         # local path in repo
+      #       target: "/home/${{ secrets.REMOTE_USERNAME }}/k8s"   # remote path
 
       # Install kubectl (latest stable release)
       # - name: Install kubectl
